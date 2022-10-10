@@ -1,0 +1,32 @@
+//Ce script automatise (plus ou moins) l'acquisition de données dans stellarium 
+
+//Première ligne, on choisit la planète que l'on veut.
+//Dans cet exemple c'est Jupiter mais vous pouvez la changer.
+var planete = ("Jupiter")
+
+//Jour julien où l'on commence l'acquisition. (ici c'est totalement aléatoire et vous pouvez le changer)
+var jourJulien = (2449999.45886)
+
+//Ici, il s'agit des jours julien que l'on rajoute à chaque nouvelle mesure.
+//Il est nécessaire de changer cette variable pour être en cohérence avec la planète choisie !
+var intervalle = (100)
+
+core.setJDay(jourJulien)
+core.selectObjectByName(planete, pointer = true)
+core.moveToObject(planete)
+
+
+//Ici, on prend 9 mesures.
+//Pour augmenter le nombre de données il suffit de changer 9 par le nombre de votre choix.
+for (var i = 0; i < 9; i++) {
+longitude = core.getSelectedObjectInfo()["elong"]
+core.debug(longitude)
+jourJulien = (jourJulien + intervalle)
+core.setJDay(jourJulien)
+core.wait(0.1)
+}
+
+//Voilà c'est un script très très rudimentaire qui pourrait être amélioré en affichant par exemple
+//en face des longitudes les jours julien correspondants. (mais un peu la flemme lol)
+
+//POUR EXECUTER CE SCRIPT, CLIQUEZ SUR LA FLECHE EN HAUT A DROITE.
